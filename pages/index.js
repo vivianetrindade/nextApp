@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { fetchEntries } from '../utils/contentfulProducts';
-import Products from '../components/Products';
+import Products from '../Components/Products';
 
 export default function Home({ products }) {
   return (
