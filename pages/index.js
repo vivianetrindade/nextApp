@@ -16,6 +16,7 @@ export default function Home({ products }) {
       <main className={styles.main}>
         <div className='products'>
           {products.map((product) => (
+            console.log(product, 'product'),
             <Products key={product.id} 
             ProductName={product.ProductName} 
             ProductDescription={product.ProductDescription}
@@ -44,6 +45,7 @@ export default function Home({ products }) {
 export async function getStaticProps() {
   const res = await fetchEntries()
   const products = await res.map((p) => {
+    console.log(p.fields, 'p.fields')
     return p.fields
   })
 
