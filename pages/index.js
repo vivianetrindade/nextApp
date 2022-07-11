@@ -19,10 +19,10 @@ export default function Home({ products }) {
           {products.map((product) => (
             console.log(product, 'product'),
             <Products key={product.id} 
-            ProductName={product.productName1} 
-            ProductDescription={product.productDescription}
-            ProductPrice={product.productPrice}
-            ProductImage={product.productImage.fields} />
+            productName={product.productName1} 
+            productDescription={product.productDescription}
+            productPrice={product.productPrice}
+            productImage={product.productImage.fields} />
           ))}
         </div>
         
