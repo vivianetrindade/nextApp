@@ -15,6 +15,7 @@ export default function Home({ products }) {
 
       <main className={styles.main}>
         <div className='products'>
+          <h1>Products</h1>
           {products.map((product) => (
             console.log(product, 'product'),
             <Products key={product.id} 
