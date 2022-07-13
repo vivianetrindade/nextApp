@@ -6,7 +6,6 @@ import Link from 'next/link';
 export async function getStaticProps() {
     const res = await fetchEntries()
     const products = await res.map((p) => {
-      console.log(p.fields, 'p.fields')
       return p.fields
     })
   
