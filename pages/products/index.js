@@ -22,7 +22,7 @@ const ProductsPage = ({ products }) => {
         <div className={styles.container}>
             <h1>Products</h1>
             {products.map((product) => (
-                <Link href={`/products/${product.productName1}`} key={product.id}>
+                <Link href={`/products/${product.id}`} key={product.id}>
                     <a><h3>{product.productName1}</h3></a>
                 </Link>
             ))}
