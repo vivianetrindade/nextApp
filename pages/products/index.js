@@ -26,6 +26,8 @@ const ProductsPage = ({ products }) => {
     setInput(e.target.value);
   }
 
+  
+
     return (
       <div className={styles.container}>
         <div className={styles.header}>
@@ -45,16 +47,16 @@ const ProductsPage = ({ products }) => {
                 >Submit
             </button>
         </div>
-        <section className='products__container'>
-            <h1>Products</h1>
+        <h1>Products</h1>
+        <section className={styles.grid}>
             {products.map((product) => (
-              <div className='product__item' key={product.id}>
+              <div className={styles.card} key={product.id}>
                 <Link href={`/products/${product.id}`} >
                     <a><h3>{product.productName1}</h3></a>
                 </Link>
                 <p>Description: {product.productDescription}</p>
                 <p>Price: {product.productPrice}</p>
-                <img src={`https:${product.productImage.fields.file.url}`} alt={product.productImage.fields.description} />
+                <img className={styles.image__box} src={`https:${product.productImage.fields.file.url}`} alt={product.productImage.fields.description} />
               </div>
             ))}
         </section>

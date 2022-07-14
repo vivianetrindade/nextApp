@@ -70,7 +70,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: 100%;
 }
 
 .card {
@@ -83,6 +83,8 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
+  min-height: 450px;
+  max-height: 450px;
 }
 
 .card:hover,
@@ -101,6 +103,9 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+.image__box{
+  margin-top: 2rem;
 }
 
 .logo {
