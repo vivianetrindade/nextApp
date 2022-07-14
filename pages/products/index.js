@@ -2,6 +2,8 @@ import styles from '../../styles/Home.module.css';
 import { fetchEntries } from '../../utils/contentfulProducts';
 // import Products from '../../Components/Products';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export async function getStaticProps() {
     const res = await fetchEntries()
@@ -17,16 +19,46 @@ export async function getStaticProps() {
 }
 
 const ProductsPage = ({ products }) => {
-    console.log(products, 'products');
+  const [input, setInput] = useState('');
+  const router = useRouter();
+
+  const changeHandler = (e) => {
+    setInput(e.target.value);
+  }
+
     return (
-        <div className={styles.container}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h3>Search</h3>
+          <input 
+                type="text" 
+                placeholder="Enter id"
+                id="name" 
+                size="10"
+                value={input}
+                onChange={changeHandler}
+                >
+            </input>
+            <button
+                type="submit"
+                onClick={()=>{router.push(`/products/${input}`)}}
+                >Submit
+            </button>
+        </div>
+        <section className='products__container'>
             <h1>Products</h1>
             {products.map((product) => (
-                <Link href={`/products/${product.id}`} key={product.id}>
+              <div className='product__item' key={product.id}>
+                <Link href={`/products/${product.id}`} >
                     <a><h3>{product.productName1}</h3></a>
                 </Link>
+                <p>Description: {product.productDescription}</p>
+                <p>Price: {product.productPrice}</p>
+                <img src={`https:${product.productImage.fields.file.url}`} alt={product.productImage.fields.description} />
+              </div>
             ))}
-        </div>
+        </section>
+      </div>
     )
 }
 export default ProductsPage;
