@@ -40,7 +40,9 @@ const ProductsDetails = ({ product, product2 }) => {
         fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${product[0].id}`, {
             method: 'POST',
         })
-        .then(res => res.json())
+        .then(res => {
+            console.log(res, 'response')
+            res.json()})
         .then(data => {
             console.log(data);
             setProductQuantity(data.productQuantity);
