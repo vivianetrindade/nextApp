@@ -18,7 +18,7 @@ export const getStaticPaths = async () => {
 }
 export async function getStaticProps(context) {
     const { pid } = context.params;
-    const res = await fetch(`http://localhost:3000/api/product/${pid}`, {method: 'GET'});
+    const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${pid}`);
     const product = await res.json();
 
     const res2 = await fetchEntry(pid);
