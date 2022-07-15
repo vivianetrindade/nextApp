@@ -17,14 +17,14 @@ const db = client.db('products');
 
 const yourCollection = db.collection("stock");
 
+const yourData = await yourCollection.find({id: pid}).toArray();
+console.log(yourData, "this is yourData");
+client.close();
+res.status(200).json(yourData);
 
+// if(req.method === 'GET') {
 
-if(req.method === 'GET') {
-  const yourData = await yourCollection.find({id: pid}).toArray();
-  console.log(yourData, "this is yourData");
-  client.close();
-  res.status(200).json(yourData);
-}
+// }
 if(req.method === 'POST') {
   const yourData = await yourCollection.findOneAndUpdate({id: pid}, {$inc: {productQuantity: -1}});
   console.log(yourData, "this is your data");
