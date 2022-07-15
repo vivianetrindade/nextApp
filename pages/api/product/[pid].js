@@ -5,7 +5,7 @@ import { MongoClient } from "mongodb";
 export default async function handler(req, res) {
   let { pid } = req.query;
   pid = Number(pid);
-  const { method } = request;
+  const { method } = req;
   
   const client = await MongoClient.connect(
     process.env.MONGODB_URI,  { useNewUrlParser: true }

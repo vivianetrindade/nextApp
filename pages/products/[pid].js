@@ -18,7 +18,8 @@ export const getStaticPaths = async () => {
 }
 export async function getStaticProps(context) {
     const { pid } = context.params;
-    const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${pid}`);
+    console.log(typeof pid, "this is pid");
+    const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${pid}`, { method: 'GET' });
     const product = await res.json();
 
     const res2 = await fetchEntry(pid);
