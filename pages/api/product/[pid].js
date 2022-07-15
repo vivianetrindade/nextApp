@@ -16,7 +16,7 @@ const db = client.db('products');
 
 
 const yourCollection = db.collection("stock");
-
+console.log(yourCollection, 'this is yourCollection');
 const yourData = await yourCollection.find({id: pid}).toArray();
 console.log(yourData, "this is yourData");
 client.close();
