@@ -21,6 +21,7 @@ const yourCollection = db.collection("stock");
 
 if(req.method === 'GET') {
   const yourData = await yourCollection.find({id: pid}).toArray();
+  console.log(yourData, "this is yourData");
   client.close();
   res.status(200).json(yourData);
 }
