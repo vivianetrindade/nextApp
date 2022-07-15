@@ -1,6 +1,7 @@
 //import { fetchEntries } from '../../utils/contentfulProducts';
 import { fetchEntry } from '../../utils/contentfulProducts';
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
+import styles from '../../styles/Home.module.css';
 
 export const getStaticPaths = async () => {
     const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/hello`);
@@ -17,7 +18,7 @@ export const getStaticPaths = async () => {
 }
 export async function getStaticProps(context) {
     const { pid } = context.params;
-    const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${pid}`);
+    const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${pid}`, {method: 'GET'});
     const product = await res.json();
 
     const res2 = await fetchEntry(pid);
@@ -35,28 +36,29 @@ export async function getStaticProps(context) {
 const ProductsDetails = ({ product, product2 }) => {
     const [productQuantity, setProductQuantity] = useState(product[0].productQuantity);
 
-    const buyhandle = () => {
+    const buyhandle = async () => {
         // do a fetch with metod post to the server
-        fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${product[0].id}`, {
+        const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${product[0].id}`, {
             method: 'POST',
         })
-        .then(res => {
-            console.log(res, 'response')
-            res.json()})
-        .then(data => {
-            console.log(data);
-            setProductQuantity(data.productQuantity);
-        });
+        console.log(res, "this is res");
+        const data = await res.json();  
+        console.log(data, "this is data");
+        setProductQuantity(data.value.productQuantity);
     }
+    useEffect(() => {
+        console.log(product[0].productQuantity, "this is in useEffect");
+    }
+    , [productQuantity, product]);
 
     return (
-        <div>
+        <div className={styles.main}>
          <h1>Product Details</h1>
             <h3>Product: {product[0].productName}</h3>
             <p>Quantity: {productQuantity}</p>
             <p>Price: {product2.productPrice}kr</p>
             <img src={product2.productImage.fields.file.url} alt={product2.productImage.fields.description} />
-            <button onClick={()=> {buyhandle(product2.id)}}>Buy</button>
+            <button onClick={()=> {buyhandle()}}>Buy</button>
         </div>
     );
 }

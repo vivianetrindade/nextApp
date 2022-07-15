@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
+
 export async function getStaticProps() {
     const res = await fetchEntries()
     const products = await res.map((p) => {
@@ -52,11 +53,12 @@ const ProductsPage = ({ products }) => {
             {products.map((product) => (
               <div className={styles.card} key={product.id}>
                 <Link href={`/products/${product.id}`} >
-                    <a><h3>{product.productName1}</h3></a>
-                </Link>
+                    <a><h3>{product.productName1}</h3>
                 <p>Description: {product.productDescription}</p>
-                <p>Price: {product.productPrice}</p>
+                <p>Price: {product.productPrice}kr</p>
                 <img className={styles.image__box} src={`https:${product.productImage.fields.file.url}`} alt={product.productImage.fields.description} />
+                </a>
+                </Link>
               </div>
             ))}
         </section>
