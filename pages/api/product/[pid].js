@@ -10,13 +10,9 @@ export default async function handler(req, res) {
     process.env.MONGODB_URI,  { useNewUrlParser: true }
   );
 
-
 const db = client.db('products');
 
-
 const yourCollection = db.collection("stock");
-console.log(yourCollection, 'this is yourCollection');
-
 
 if(req.method === 'GET') {
   const yourData = await yourCollection.find({id: pid}).toArray();

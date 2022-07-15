@@ -4,7 +4,7 @@ import { useEffect, useState} from 'react';
 import styles from '../../styles/Home.module.css';
 
 export const getStaticPaths = async () => {
-    const res = await fetch(`http://localhost:3000/api/product/hello`);
+    const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/`);
     const data = await res.json();
     const paths = await data.map((p) => {
         return {
@@ -19,7 +19,7 @@ export const getStaticPaths = async () => {
 export async function getStaticProps(context) {
     const { pid } = context.params;
     console.log(typeof pid, "this is pid");
-        const res = await fetch(`http://localhost:3000/api/product/${pid}`, { method: 'GET' });
+        const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${pid}`, { method: 'GET' });
         const product = await res.json();
     
 
@@ -40,7 +40,7 @@ const ProductsDetails = ({ product, product2 }) => {
 
     const buyhandle = async () => {
         // do a fetch with metod post to the server
-        const res = await fetch(`http://localhost:3000/api/product/${product[0].id}`, {
+        const res = await fetch(`https://zippy-dolphin-faad4d.netlify.app/api/product/${product[0].id}`, {
             method: 'POST',
         })
         console.log(res, "this is res");
